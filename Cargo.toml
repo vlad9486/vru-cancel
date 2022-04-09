@@ -1,0 +1,19 @@
+[package]
+name = "vru-cancel"
+version = "0.1.0"
+authors = ["Vladislav Melnik <vladislav.melnik@protonmail.com>"]
+edition = "2021"
+rust-version = "1.58.1"
+license = "MIT"
+description = "Cancel tokio stream"
+repository = "https://github.com/vlad9486/vru-cancel.git"
+keywords = ["async", "stream", "tokio"]
+categories = ["asynchronous", "rust-patterns"]
+
+[dependencies]
+pin-project-lite = { version = "0.2.9" }
+tokio = { version = "1.18", features = ["sync"] }
+tokio-stream = { version = "0.1.8", default-features = false }
+
+[dev-dependencies]
+tokio = { version = "1.18", features = ["rt", "time", "macros", "sync", "signal"] }
