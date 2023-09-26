@@ -13,6 +13,7 @@ use std::{
     pin::Pin,
     task::{Context, Poll},
     future::Future,
+    ops::{Deref, DerefMut},
 };
 
 use tokio::sync::watch;
@@ -28,6 +29,20 @@ pin_project_lite::pin_project! {
         pub stream: S,
         #[pin]
         pub fut: F,
+    }
+}
+
+impl<S, F> Deref for Cancelable<S, F> {
+    type Target = S;
+
+    fn deref(&self) -> &Self::Target {
+        &self.stream
+    }
+}
+
+impl<S, F> DerefMut for Cancelable<S, F> {
+    fn deref_mut(&mut self) -> &mut Self::Target {
+        &mut self.stream
     }
 }
 
